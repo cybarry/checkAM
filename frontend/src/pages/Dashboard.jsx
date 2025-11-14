@@ -1,8 +1,9 @@
+// src/pages/Dashboard.jsx
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Bell, CloudUpload, Sun, AlertCircle } from "lucide-react";
 import BottomNav from "../components/BottomNav.jsx";
-import { getDashboard, getUser } from "../api.js";
+// REMOVED: import { getDashboard, getUser } from "../api.js"
 
 export default function Dashboard() {
   const [user, setUser] = useState({ name: "Raji Abdulfatai Ridwan" });
@@ -18,19 +19,20 @@ export default function Dashboard() {
     alerts: 1,
   });
 
+  // MOCK DATA ONLY — NO API CALLS
   useEffect(() => {
-    // Fetch real data from your backend
-    Promise.all([
-      getUser?.()
-        .then(setUser)
-        .catch(() => {}),
-      getDashboard?.()
-        .then((data) => {
-          setWeather((prev) => ({ ...prev, ...data.weather }));
-          setStats((prev) => ({ ...prev, ...data.stats }));
-        })
-        .catch(() => {}),
-    ]);
+    // Simulate loading
+    const timer = setTimeout(() => {
+      setUser({ name: "Raji Abdulfatai Ridwan" });
+      setWeather({
+        day: "Monday",
+        location: "Sabon Gari Zaria, Kaduna",
+        temp: "29",
+        condition: "Windy",
+      });
+      setStats({ points: 35, scans: 12, alerts: 1 });
+    }, 500);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
