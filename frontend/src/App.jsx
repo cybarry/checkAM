@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.jsx
+import { Routes, Route } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
+// Pages
+import Onboarding from "./pages/Onboarding.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import ScanScreen from "./pages/ScanScreen.jsx";
+import VerifiedScreen from "./pages/VerifiedScreen.jsx";
+import WarningScreen from "./pages/WarningScreen.jsx";
+import WalletScreen from "./pages/WalletScreen.jsx";
+import HistoryScreen from "./pages/HistoryScreen.jsx";
+import ReportScreen from "./pages/ReportScreen.jsx";
+import Profile from "./pages/Profile.jsx"; // ADD THIS
 
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="min-h-screen bg-gray-50">
+      <Routes>
+        <Route path="/" element={<Onboarding />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/scan" element={<ScanScreen />} />
+        <Route path="/verified" element={<VerifiedScreen />} />
+        <Route path="/warning" element={<WarningScreen />} />
+        <Route path="/report" element={<ReportScreen />} />
+        <Route path="/wallet" element={<WalletScreen />} />
+        <Route path="/history" element={<HistoryScreen />} />
+        <Route path="/profile" element={<Profile />} /> {/* ADD THIS */}
+      </Routes>
+    </div>
+  );
 }
-
-export default App
